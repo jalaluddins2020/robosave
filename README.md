@@ -30,6 +30,7 @@ docker-compose build
 docker-compose up
 ```
 **Service Architecture Diagram**
+
 ![image](https://user-images.githubusercontent.com/93022626/201927729-ea7cfc58-30be-4968-b5f8-96d5442eeaac.png)
 
 **Services Built and Run**
