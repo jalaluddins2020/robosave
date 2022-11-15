@@ -4,11 +4,11 @@
 A school financial technology project to "disrupt the bank". Invest as your spend.
 ```
 >**Tech Stack**
-	1. HTML
-	2. CSS - Chakra UI (Component Library)
-	3. React 
-	4. Flask (Python)
-	5. Docker (Container)
+> 1. React 
+> 2. HTML
+> 3. CSS - Chakra UI (Component Library)
+> 4. Flask (Python)
+> 5. Docker (Container)
 
 # Backend
 
