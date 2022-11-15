@@ -1,0 +1,115 @@
+version: "3.8"
+
+services:
+
+  # #######################################
+  # # MySQL database for Transaction service
+  # #######################################
+  # transaction-database:
+  #   image: mysql/mysql-server:8.0
+  #   command: 'mysqld --default-authentication-plugin=mysql_native_password'
+  #   restart: always
+  #   environment:
+  #     MYSQL_ROOT_PASSWORD: 'mysql'
+  #     MYSQL_ROOT_HOST: '%'
+  #     MYSQL_USER: 'transaction'
+  #     MYSQL_PASSWORD: 'transaction'
+  #     MYSQL_DATABASE: 'transaction'
+  #   volumes:
+  #     - './services/transaction/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d'
+  #   ports:
+  #     - '3307:3306'
+
+  #################################
+  # Transaction: The Transaction microservice
+  #################################
+  transaction:
+    build:
+      dockerfile: Dockerfile
+      context: './services/transaction'
+    restart: always
+    environment:
+      dbURL: 'mysql+mysqlconnector://root:@host.docker.internal:3306/transaction'
+    ports:
+      - "5100:5000"
+    # depends_on:
+    #   - 'transaction-database'
+      
+  # #######################################
+  # # MySQL database for Customer service
+  # #######################################
+  # customer-database:
+  #   image: mysql/mysql-server:8.0
+  #   command: 'mysqld --default-authentication-plugin=mysql_native_password'
+  #   restart: always
+  #   environment:
+  #     MYSQL_ROOT_PASSWORD: 'mysql'
+  #     MYSQL_ROOT_HOST: '%'
+  #     MYSQL_USER: 'customer'
+  #     MYSQL_PASSWORD: 'customer'
+  #     MYSQL_DATABASE: 'customer'
+  #   volumes:
+  #     - './services/customer/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d'
+  #   ports:
+  #     - '3308:3306'
+
+  #################################
+  # Customer: The Customer microservice
+  #################################
+  customer:
+    build:
+      dockerfile: Dockerfile
+      context: './services/customer'
+    restart: always
+    environment:
+      dbURL: 'mysql+mysqlconnector://root:@host.docker.internal:3306/customer'
+    ports:
+      - "5001:5000"
+    # depends_on:
+    #   - 'customer-database'
+
+  # #######################################
+  # # MySQL database for Roundup service
+  # #######################################
+  # roundup-database:
+  #   image: mysql/mysql-server:8.0
+  #   command: 'mysqld --default-authentication-plugin=mysql_native_password'
+  #   restart: always
+  #   environment:
+  #     MYSQL_ROOT_PASSWORD: 'mysql'
+  #     MYSQL_ROOT_HOST: '%'
+  #     MYSQL_USER: 'roundup'
+  #     MYSQL_PASSWORD: 'roundup'
+  #     MYSQL_DATABASE: 'roundup'
+  #   volumes:
+  #     - './services/roundup/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d'
+  #   ports:
+  #     - '3309:3306'
+
+  #################################
+  # Roundup: The Roundup microservice
+  #################################
+  roundup:
+    build:
+      dockerfile: Dockerfile
+      context: './services/roundup'
+    restart: always
+    environment:
+      dbURL: 'mysql+mysqlconnector://root:@host.docker.internal:3306/roundup'
+    ports:
+      - "5002:5000"
+    # depends_on:
+    #   - 'roundup-database'
+
+  #################################
+  # Orchestrator: The Orchestrator complex microservice
+  #################################
+  orchestrator:
+    build:
+      dockerfile: Dockerfile
+      context: './orchestrator'
+    restart: always
+    ports:
+      - "5000:5000"
+      
+
