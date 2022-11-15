@@ -53,8 +53,8 @@ npm start
 **Financial News**
 ![image](https://user-images.githubusercontent.com/93022626/201924182-c47a82c4-964b-4a79-b97a-ffabc5778a08.png)
 
--
-> **Project By**
+
+### Project By
 > G2T4
 > - JALALUDDIN BIN SELAMAT
 > - MUHAMMAD SYAFIQ BIN SHARIFFUDIN
